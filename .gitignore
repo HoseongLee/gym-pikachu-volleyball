@@ -1,0 +1,3 @@
+.nix-shell-inputs
+shell.nix
+**/__pycache__/**

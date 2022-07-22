@@ -6,7 +6,7 @@ setup(
     author="Hoseong Lee",
     author_email="leehs.git@gmail.com",
     install_requires=[
-        "gym >= 0.24.1",
+        "gym >= 0.25.0",
         "pygame >= 2.1.2",
     ],
     description="An openai-gym wrapper for pikachu-volleyball",

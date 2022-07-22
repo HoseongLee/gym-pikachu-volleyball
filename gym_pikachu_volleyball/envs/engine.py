@@ -14,8 +14,8 @@ class Engine:
                 Player(True, is_player2_computer))
 
         self.ball = Ball(False)
-
-    def step(self, user_inputs: Tuple[UserInput, UserInput]):
+        
+    def step(self, user_inputs: Tuple[UserInput, UserInput]) -> bool:
         is_ball_touching_ground =\
                 self.__process_collision_between_ball_and_world_and_set_ball_position();
 
@@ -38,6 +38,9 @@ class Engine:
         self.players[0].reset()
         self.players[1].reset()
         self.ball.reset(is_player2_serve)
+
+    def seed(self, seed: int) -> None:
+        random.seed(seed)
 
     def __is_collision_between_ball_and_player_happening(self, player_id: int) -> bool:
         player = self.players[player_id]
@@ -224,13 +227,12 @@ class Engine:
                 player.delay_before_next_frame = 0
                 player.frame_number += 1
 
-    def create_viewer(self) -> None:
+    def create_viewer(self, render_mode: str) -> None:
         self.viewer = Viewer(self)
-
-    def render(self) -> None:
-        if self.viewer.headless:
+        if render_mode == 'human':
             self.viewer.init_screen()
 
+    def render(self, mode: str) -> None:
         self.viewer.render()
 
     def close(self) -> None:

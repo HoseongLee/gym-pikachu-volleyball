@@ -138,14 +138,12 @@ class Viewer:
             self.screen.blit(ball_punch_image, (self.ball.punch_effect_x - effect_size, self.ball.punch_effect_y - effect_size))
 
     def render(self) -> None:
-        self.update()
-
         if not self.headless:
             self.clock.tick(30)
             pygame.display.update()
 
     def get_screen_rgb_array(self) -> np.ndarray:
-        return np.array(pygame.surfarray.pixels3d(self.screen))
+        return np.transpose(np.array(pygame.surfarray.pixels3d(self.screen)), axes=(1, 0, 2))
     
     def close(self) -> None:
         pygame.quit()
